@@ -6,24 +6,30 @@ public class Movement : MonoBehaviour
 {
     [SerializeField]
     private float speed = 5;
-    [SerializeField]
-    private float rotationSpeed = 50;
+    //[SerializeField]
+    public float rotationSpeed = 50;
 
+	//public GameObject colliderObject;
 
-    void Update()
+    void FixedUpdate()
     {
 
-        float translation = Input.GetAxis("Vertical") * speed;
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-
+        float translation = Mathf.RoundToInt(Input.GetAxis("Vertical")) * speed;
+        float rotation = Mathf.RoundToInt(Input.GetAxis("Horizontal")) * rotationSpeed;
 
         translation *= Time.deltaTime;
         rotation *= Time.deltaTime;
 
+		//translation 
 
         transform.Translate(0, 0, translation);
 
 
         transform.Rotate(0, rotation, 0);
+
+		//colliderObject.transform.Translate(0, 0, translation);
+		//colliderObject.transform.Rotate(0, rotation, 0);
+
+		//transform.Translate(colliderObject.transform.position);
     }
 }
