@@ -7,6 +7,14 @@ public class ShellScript : MonoBehaviour
 {
 	public int Upgrades = 1;
 	public bool DontCollide = false;
+
+	public Vector3 JumpAttachpoint;
+	public Vector3 DashAttachpoint;
+	public Vector3 ClimbAttachpoint;
+
+	public GameObject JumpPrefab;
+	public GameObject DashPrefab;
+	public GameObject ClimbPrefab;
 	
 	// Start is called before the first frame update
     void Start()
