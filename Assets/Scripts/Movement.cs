@@ -9,7 +9,14 @@ public class Movement : MonoBehaviour
     //[SerializeField]
     public float rotationSpeed = 50;
 
+	public float selfRightingTorque = 1.0f;
+
 	//public GameObject colliderObject;
+
+	private void Start()
+	{
+		//this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+	}
 
 	private void Awake()
 	{
@@ -33,6 +40,8 @@ public class Movement : MonoBehaviour
 				
 			}
 		}
+
+		//transform.rotation = Quaternion.LookRotation(transform.forward);
 	}
 
 	void FixedUpdate()
@@ -51,10 +60,29 @@ public class Movement : MonoBehaviour
 
         transform.Rotate(0, rotation, 0);
 
+
+		
+
+		var angle = Vector3.Angle(transform.up, Vector3.up);
+
+		if(angle > 0.001)
+		{
+			var axis = Vector3.Cross(transform.up, Vector3.up);
+			this.GetComponent<Rigidbody>().AddTorque(axis * angle * selfRightingTorque);
+		}
+
+		//this.GetComponent<Rigidbody>().angularDrag = 100000000;
+
 		//colliderObject.transform.Translate(0, 0, translation);
 		//colliderObject.transform.Rotate(0, rotation, 0);
 
 		//transform.Translate(colliderObject.transform.position);
+
+		//var force = 5f;
+		//var offset = 1f;
+		//var point = transform.TransformPoint(offset * Vector3.forward);
+		//this.GetComponent<Rigidbody>().AddForceAtPosition(force * Vector3.forward, point);
+
     }
 
 	int upgrades = 0;

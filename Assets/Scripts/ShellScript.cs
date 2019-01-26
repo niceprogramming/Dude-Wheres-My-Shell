@@ -21,14 +21,14 @@ public class ShellScript : MonoBehaviour
         if(DontCollide)
 		{
 			StartCoroutine(ResetCollision());
-				DontCollide = false;
+				
 		}
     }
 
 	private IEnumerator ResetCollision()
 	{
 		yield return new WaitForSeconds(3);
-		
 
+		DontCollide = false;
 	}
 }
