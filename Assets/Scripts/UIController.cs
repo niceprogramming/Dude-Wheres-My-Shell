@@ -38,15 +38,15 @@ public class UIController : MonoBehaviour
 		{
 			var parentName = image.transform.parent.name;
 
-			if (parentName == "Slot_1" && slot == 1)
+			if (parentName == "Slot_1" && slot == 0)
 			{
 				SetUpgradeInternal(image, upgrade);
 			}
-			else if (parentName == "Slot_2" && slot == 2)
+			else if (parentName == "Slot_2" && slot == 1)
 			{
 				SetUpgradeInternal(image, upgrade);
 			}
-			else if (parentName == "Slot_3" && slot == 3)
+			else if (parentName == "Slot_3" && slot == 2)
 			{
 				SetUpgradeInternal(image, upgrade);
 			}
@@ -123,8 +123,22 @@ public class UIController : MonoBehaviour
 			{
 				SetActiveInternal(image, true);
 			}
-			else
+			else if(parentName == "Slot_1" && maxCount > 0)
+			{
 				SetActiveInternal(image, false);
+			}
+			else if (parentName == "Slot_2" && maxCount > 1)
+			{
+				SetActiveInternal(image, false);
+			}
+			else if (parentName == "Slot_3" && maxCount > 2)
+			{
+				SetActiveInternal(image, false);
+			}
+			else
+			{
+				//do nothing
+			}
 		}
 	}
 
@@ -140,9 +154,11 @@ public class UIController : MonoBehaviour
 		}
 	}
 
+	int maxCount = 0;
 	public void SetMaxUpgrades(int count)
 	{
 		var allImages = GetComponentsInChildren<Image>();
+		maxCount = count;
 
 		Dictionary<int, string> enabledSlots = new Dictionary<int, string>();
 		enabledSlots.Add(0, "");
@@ -159,6 +175,8 @@ public class UIController : MonoBehaviour
 
 				if (!enabledSlots[count].Contains(parentName))
 					image.enabled = false;
+				else
+					image.enabled = true;
 			}
 			else
 			{

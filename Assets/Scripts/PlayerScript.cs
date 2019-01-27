@@ -43,8 +43,9 @@ public class PlayerScript : MonoBehaviour
 		 * Test
 		 */
 		 
-		_activeUpgrade = 1;
-		_upgrades[0] = UpgradeEnum.Dash;
+		_upgradeLimit = 1;
+		//_upgrades[0] = UpgradeEnum.Dash;
+		uiController.SetMaxUpgrades(1);
     }
 
 	bool climbEnabled = false;
@@ -62,11 +63,13 @@ public class PlayerScript : MonoBehaviour
 				_shellBoy.DontCollide = true;
 				_shellBoy.gameObject.AddComponent<Rigidbody>();
 				_shellBoy = null;
-				_upgradeLimit = 0;
+
+				ClearUpgrades();
+				uiController.SetMaxUpgrades(0);
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.Space))
+		if(Input.GetKeyDown(KeyCode.Space) && _activeUpgrade > 0)
 		{
 			//activate selected ability
 			if(_upgrades[_activeUpgrade-1] == UpgradeEnum.Climb)
@@ -136,7 +139,16 @@ public class PlayerScript : MonoBehaviour
 		if (shell != null && !shell.DontCollide)
 		{
 			_shellBoy = shell;
-			_upgradeLimit = shell.Upgrades;
+			_upgradeLimit = shell.MaxUpgrades;
+
+			uiController.SetMaxUpgrades(_upgradeLimit);
+
+			//Ask shell what upgrades it has already
+			var upgradesOnShell = shell.GetUpgrades();
+			foreach(var onShell in upgradesOnShell)
+			{
+				AddUpgrade(onShell);
+			}
 
 			Destroy(shell.GetComponent<Rigidbody>());
 			shell.transform.SetParent(this.transform);
@@ -173,21 +185,38 @@ public class PlayerScript : MonoBehaviour
 
 		if(collision.gameObject.tag == dashTag)
 		{
-			
+			int slot = UpgradeInternal(collision.gameObject, UpgradeEnum.Dash);
+
+			if(_shellBoy != null && slot > -1)
+			{
+				_shellBoy.SetUpgrade(slot, UpgradeEnum.Dash);
+			}
 		}
 		else if(collision.gameObject.tag == jumpTag)
 		{
+			int slot = UpgradeInternal(collision.gameObject, UpgradeEnum.Jump);
 
+			if (_shellBoy != null && slot > -1)
+			{
+				_shellBoy.SetUpgrade(slot, UpgradeEnum.Dash);
+			}
 		}
 		else if(collision.gameObject.tag == climbTag)
 		{
+			int slot = UpgradeInternal(collision.gameObject, UpgradeEnum.Climb);
 
+			if (_shellBoy != null && slot > -1)
+			{
+				_shellBoy.SetUpgrade(slot, UpgradeEnum.Dash);
+			}
 		}
 	}
 
-	private void UpgradeInternal(GameObject gameObject)
+	private int UpgradeInternal(GameObject gameObject, UpgradeEnum upgrade)
 	{
 		gameObject.transform.Translate(0, 10, 0);
+
+		return AddUpgrade(upgrade);
 	}
 
 	private void OnCollisionExit(Collision collision)
@@ -219,19 +248,38 @@ public class PlayerScript : MonoBehaviour
 		{
 			_upgrades[x] = UpgradeEnum.None;
 		}
+
+		_upgradeCount = 0;
+		_upgradeLimit = 0;
 	}
 
-	private bool AddUpgrade(UpgradeEnum upgrade)
+	private int AddUpgrade(UpgradeEnum upgrade)
 	{
+		int result = -1;
+
 		if (_upgradeCount < _upgradeLimit)
 		{
 			_upgrades[_upgradeCount] = upgrade;
 
+			uiController.SetUpgrade(_upgradeCount, upgrade);
+
+			result = _upgradeCount;
+			_upgradeCount++;
+
 			//Put upgrade onto shell
 		}
-		else
-			return false;
+		else if(_upgradeCount == _upgradeLimit && _upgradeLimit > 0)
+		{
+			_upgradeCount = 0;
+			_upgrades[0] = upgrade;
+			uiController.SetUpgrade(0, upgrade);
 
-		return true;
+			result = _upgradeCount;
+			_upgradeCount++;
+		}
+		else
+			return -1;
+
+		return result;
 	}
 }

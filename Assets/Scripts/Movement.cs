@@ -32,8 +32,8 @@ public class Movement : MonoBehaviour
             translation *= Time.deltaTime;
             rotation *= Time.deltaTime;
 
-            
-            animator.Play("Walk");
+            if(animator != null)
+				animator.Play("Walk");
             
             transform.Translate(0, 0, translation);
 
@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            
+            if(animator != null)
                 animator.Play("Idle");
            
         }
