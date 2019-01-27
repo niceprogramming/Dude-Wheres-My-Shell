@@ -18,8 +18,12 @@ public class ShellScript : MonoBehaviour
 
 	PlayerScript.UpgradeEnum[] upgrades = { PlayerScript.UpgradeEnum.None, PlayerScript.UpgradeEnum.None, PlayerScript.UpgradeEnum.None };
 
+	private GameObject attachedJump;
+	private GameObject attachedDash;
+	private GameObject attachedClimb;
+
 	// Start is called before the first frame update
-    void Start()
+	void Start()
     {
         
     }
@@ -37,9 +41,52 @@ public class ShellScript : MonoBehaviour
 
 	public void SetUpgrade(int slot, PlayerScript.UpgradeEnum upgrade)
 	{
+		if(upgrades[slot] != PlayerScript.UpgradeEnum.None)
+		{
+			if(upgrades[slot] == PlayerScript.UpgradeEnum.Climb && attachedClimb != null)
+			{
+				Destroy(attachedClimb);
+				attachedClimb = null;
+			}
+			else if(upgrades[slot] == PlayerScript.UpgradeEnum.Dash && attachedDash != null)
+			{
+				Destroy(attachedDash);
+				attachedDash = null;
+			}
+			else if(upgrades[slot] == PlayerScript.UpgradeEnum.Jump && attachedJump != null)
+			{
+				Destroy(attachedJump);
+				attachedJump = null;
+			}
+		}
+
 		upgrades[slot] = upgrade;
 
 		//Move prefab to slot
+		if(upgrade == PlayerScript.UpgradeEnum.Dash)
+		{
+			attachedDash = Instantiate(DashPrefab, this.gameObject.transform);
+			Destroy(attachedDash.GetComponent<Rigidbody>());
+			if(attachedDash.GetComponent<BoxCollider>() != null)
+				attachedDash.GetComponent<BoxCollider>().enabled = false;
+			attachedDash.transform.localPosition = DashAttachpoint;
+		}
+		else if(upgrade == PlayerScript.UpgradeEnum.Jump)
+		{
+			attachedJump = Instantiate(JumpPrefab, this.gameObject.transform);
+			Destroy(attachedJump.GetComponent<Rigidbody>());
+			if(attachedJump.GetComponent<BoxCollider>() != null)
+				attachedJump.GetComponent<BoxCollider>().enabled = false;
+			attachedJump.transform.localPosition = JumpAttachpoint;
+		}
+		else if(upgrade == PlayerScript.UpgradeEnum.Climb)
+		{
+			attachedClimb = Instantiate(ClimbPrefab, this.gameObject.transform);
+			Destroy(attachedClimb.GetComponent<Rigidbody>());
+			if(attachedClimb.GetComponent<BoxCollider>() != null)
+				attachedClimb.GetComponent<BoxCollider>().enabled = false;
+			attachedClimb.transform.localPosition = ClimbAttachpoint;
+		}
 	}
 
 	public List<PlayerScript.UpgradeEnum> GetUpgrades()
