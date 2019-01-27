@@ -913,6 +913,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2041938099, guid: 3fe8f58b28f8b434a8b7fd115f7777db, type: 3}
+      propertyPath: CanvasObject
+      value: 
+      objectReference: {fileID: 1952974968}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fe8f58b28f8b434a8b7fd115f7777db, type: 3}
 --- !u!1001 &1167202472
@@ -1380,29 +1384,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2041938098 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5800922941152162433, guid: 3fe8f58b28f8b434a8b7fd115f7777db,
-    type: 3}
-  m_PrefabInstance: {fileID: 1110647610}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2041938099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041938098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14125606fe1e90a428743dc7de58b9e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanvasObject: {fileID: 1952974968}
-  jumpStrength: 5
-  dashStrength: 10
-  climbForce: 10
-  ShellAttachVector: {x: 0.25, y: 0.16, z: -0.2}
 --- !u!1001 &2057002268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1832,31 +1813,6 @@ PrefabInstance:
       propertyPath: JumpPrefab
       value: 
       objectReference: {fileID: 332856260}
-    - target: {fileID: 5438506618588561720, guid: 8c564412ee82cb44399ded4076f834f9,
-        type: 3}
-      propertyPath: DashAttachpoint.z
-      value: -0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438506618588561720, guid: 8c564412ee82cb44399ded4076f834f9,
-        type: 3}
-      propertyPath: MaxUpgrades
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438506618588561720, guid: 8c564412ee82cb44399ded4076f834f9,
-        type: 3}
-      propertyPath: ClimbAttachpoint.x
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438506618588561720, guid: 8c564412ee82cb44399ded4076f834f9,
-        type: 3}
-      propertyPath: ClimbAttachpoint.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5438506618588561720, guid: 8c564412ee82cb44399ded4076f834f9,
-        type: 3}
-      propertyPath: ClimbAttachpoint.z
-      value: -0.6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c564412ee82cb44399ded4076f834f9, type: 3}
 --- !u!1001 &5966392623949314145
