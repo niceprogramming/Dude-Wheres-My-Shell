@@ -14,7 +14,7 @@ public class ScrollContent : MonoBehaviour
     void Start()
     {
         //var content = GetComponent<ScrollContent>();
-        for (int i = 0; i < EditorBuildSettings.scenes.Length; i++)
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             //var path = SceneUtility.GetScenePathByBuildIndex(i);
             

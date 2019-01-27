@@ -68,7 +68,7 @@ public class PlayerScript : MonoBehaviour
 			if (_shellBoy != null)
 			{
 				//shellBoy.transform.SetParent(null);
-#warning Bug, detached the crab mesh
+//#warning Bug, detached the crab mesh
 				this.transform.DetachChildren();
 				//shellBoy.transform.position += new Vector3(0, 4, 0);
 				_shellBoy.DontCollide = true;
