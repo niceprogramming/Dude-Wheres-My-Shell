@@ -49,7 +49,7 @@ public class PlayerScript : MonoBehaviour
 		 
 		//_upgradeLimit = 1;
 		//_upgrades[0] = UpgradeEnum.Dash;
-		//uiController.SetMaxUpgrades(1);
+		uiController.SetMaxUpgrades(0);
     }
 
 	bool climbEnabled = false;
@@ -198,6 +198,8 @@ public class PlayerScript : MonoBehaviour
 			if(_shellBoy != null && slot > -1)
 			{
 				_shellBoy.SetUpgrade(slot, UpgradeEnum.Dash);
+
+				SetActiveUpgrade(slot + 1);
 			}
 		}
 		else if(collision.gameObject.tag == jumpTag)
@@ -207,6 +209,8 @@ public class PlayerScript : MonoBehaviour
 			if (_shellBoy != null && slot > -1)
 			{
 				_shellBoy.SetUpgrade(slot, UpgradeEnum.Jump);
+
+				SetActiveUpgrade(slot + 1);
 			}
 		}
 		else if(collision.gameObject.tag == climbTag)
@@ -216,6 +220,8 @@ public class PlayerScript : MonoBehaviour
 			if (_shellBoy != null && slot > -1)
 			{
 				_shellBoy.SetUpgrade(slot, UpgradeEnum.Climb);
+
+				SetActiveUpgrade(slot + 1);
 			}
 		}
 	}
