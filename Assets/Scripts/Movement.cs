@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
     {
         float translation = Mathf.RoundToInt(Input.GetAxis("Vertical")) * speed;
         float rotation = Mathf.RoundToInt(Input.GetAxis("Horizontal")) * rotationSpeed;
-        if (translation > 0 || rotation > 0)
+        if (translation != 0f || rotation != 0f)
         {
             translation *= Time.deltaTime;
             rotation *= Time.deltaTime;
