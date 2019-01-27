@@ -2517,7 +2517,7 @@ PrefabInstance:
       objectReference: {fileID: 1277604169}
     - target: {fileID: 2041938099, guid: 3fe8f58b28f8b434a8b7fd115f7777db, type: 3}
       propertyPath: climbForce
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fe8f58b28f8b434a8b7fd115f7777db, type: 3}
