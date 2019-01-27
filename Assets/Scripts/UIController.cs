@@ -9,7 +9,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
 		var allImages = GetComponentsInChildren<Image>();
-		
+        GetComponent<Canvas>().enabled = true;
 		foreach(var image in allImages)
 		{
 			if (image.name == "UpgradeSlot_Background")

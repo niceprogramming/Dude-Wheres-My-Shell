@@ -9,9 +9,9 @@ public class PlayerScript : MonoBehaviour
 
 	public GameObject CanvasObject;
 
-	public float jumpStrength = 1f;
-	public float dashStrength = 1f;
-	public float climbForce = 1f;
+	public float jumpStrength = 5f;
+	public float dashStrength = 10f;
+	public float climbForce = 10f;
 
 	public enum UpgradeEnum
 	{
