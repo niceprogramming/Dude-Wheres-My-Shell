@@ -1,14 +1,37 @@
 fileFormatVersion: 2
-guid: e9f2c5cdde06da0458fe7598a10dba4f
+guid: 4407eb08115a00f469bc4b6f92d8fd02
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: Shell
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: ShellMesh
+    100000: Armature
+    100002: ClownFish
+    100004: Face
+    100006: Face_end
+    100008: //RootNode
+    100010: Root
+    100012: Spine1
+    100014: Spine2
+    100016: Spine3
+    100018: Tail
+    100020: Tail_end
+    400000: Armature
+    400002: ClownFish
+    400004: Face
+    400006: Face_end
+    400008: //RootNode
+    400010: Root
+    400012: Spine1
+    400014: Spine2
+    400016: Spine3
+    400018: Tail
+    400020: Tail_end
+    2100000: Outline
+    2100002: Body
+    2100004: Stripes
+    4300000: ClownFish
+    7400000: Armature|Swim
+    9500000: //RootNode
+    13700000: ClownFish
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -43,7 +66,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -61,8 +84,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -89,7 +112,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
