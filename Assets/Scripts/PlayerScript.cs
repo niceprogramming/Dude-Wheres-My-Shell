@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -80,7 +81,27 @@ public class PlayerScript : MonoBehaviour
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.Space) && _activeUpgrade > 0)
+		//if(Input.anyKey)
+		//{
+		//	foreach(KeyCode code in Enum.GetValues(typeof(KeyCode)))
+		//	{
+		//		if(Input.GetKey(code))
+		//		{
+		//			Debug.Log(code.ToString());
+		//		}
+		//	}
+		//}
+
+		//Joy4 = LB
+
+		//Debug.Log("JoyButton 1 (b): " + Input.GetButton("bUpgrade"));
+		//Debug.Log("JoyButton 2 (x): " + Input.GetButton("xUpgrade"));
+		//Debug.Log("JoyButton 3 (y): " + Input.GetButton("yUpgrade"));
+		//Debug.Log("JoyButton 0 (a): " + Input.GetButton("aUpgrade"));
+		//Debug.Log("JoyButton 6 (select): " + Input.GetButton("select_Reset"));
+		//Debug.Log("JoyButton 7 (start): " + Input.GetButton("start_menu"));
+
+		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("aUpgrade")) && _activeUpgrade > 0)
 		{
 			//activate selected ability
 			if(_upgrades[_activeUpgrade-1] == UpgradeEnum.Climb)
@@ -112,22 +133,22 @@ public class PlayerScript : MonoBehaviour
 			this.GetComponent<Rigidbody>().AddForce(Vector3.up * climbForce, ForceMode.Force);
 		}
 
-		if (Input.GetKeyUp(KeyCode.Space))
+		if (Input.GetKeyUp(KeyCode.Space) && Input.GetButtonUp("aUpgrade"))
 		{
 			climbEnabled = false;
 		}
 
-		if(Input.GetKeyDown(KeyCode.Alpha1))
+		if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetButtonDown("xUpgrade"))
 		{
 			SetActiveUpgrade(1);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Alpha2))
+		if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetButtonDown("yUpgrade"))
 		{
 			SetActiveUpgrade(2);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Alpha3))
+		if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetButtonDown("bUpgrade"))
 		{
 			SetActiveUpgrade(3);
 		}

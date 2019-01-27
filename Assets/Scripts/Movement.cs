@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour
 
 	void FixedUpdate()
     {
+		//Debug.Log(Input.GetJoystickNames());
         float translation = Mathf.RoundToInt(Input.GetAxis("Vertical")) * speed;
         float rotation = Mathf.RoundToInt(Input.GetAxis("Horizontal")) * rotationSpeed;
         if (translation != 0f || rotation != 0f)
