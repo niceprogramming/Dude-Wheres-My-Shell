@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1096595014194211217}
   - component: {fileID: 2457753051978723344}
   - component: {fileID: 4057724999215028186}
-  - component: {fileID: 2990448219295388575}
+  - component: {fileID: 7830226672085562971}
   m_Layer: 0
   m_Name: LevelWallPiece1
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025412546440664580}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children: []
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2990448219295388575
+--- !u!65 &7830226672085562971
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,4 +91,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.011174202, y: 0.010587101, z: 0.011174202}
-  m_Center: {x: 0, y: 0.00029355055, z: 0}
+  m_Center: {x: 0, y: 0.0052935504, z: 0}

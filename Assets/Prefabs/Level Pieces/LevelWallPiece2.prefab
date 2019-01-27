@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8794407871359804752}
   - component: {fileID: 1705579790452676167}
   - component: {fileID: 8108914411067390869}
-  - component: {fileID: 7326886295573135576}
+  - component: {fileID: 3998100288269537283}
   m_Layer: 0
   m_Name: LevelWallPiece2
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4310599680654991619}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &1705579790452676167
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -59,8 +59,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 475713f13b9ff06459d9a803e25bfd71, type: 3}
-  - {fileID: 2100002, guid: 475713f13b9ff06459d9a803e25bfd71, type: 3}
-  - {fileID: 2100004, guid: 475713f13b9ff06459d9a803e25bfd71, type: 3}
+  - {fileID: 2100006, guid: 475713f13b9ff06459d9a803e25bfd71, type: 3}
+  - {fileID: 2100008, guid: 475713f13b9ff06459d9a803e25bfd71, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7326886295573135576
+--- !u!65 &3998100288269537283
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,4 +92,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.011174202, y: 0.010587101, z: 0.011264779}
-  m_Center: {x: 0, y: 0, z: 4.656613e-10}
+  m_Center: {x: 0, y: 0.0052935504, z: 4.656613e-10}

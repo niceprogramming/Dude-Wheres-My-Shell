@@ -357,7 +357,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rotationSpeed: 50
+  rotationSpeed: 150
+  animator: {fileID: 0}
   selfRightingTorque: 1
 --- !u!54 &1005816113
 Rigidbody:
