@@ -9,7 +9,13 @@ public class MusicManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        source = GetComponent<AudioSource>();
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        PlayMusic();
+       
+        
     }
 
     public void PlayMusic()
