@@ -17,6 +17,8 @@ public class PlayerScript : MonoBehaviour
 
 	public bool DestroyUpgrades = true;
 
+	public float DashDeadlyTime = 1f;
+
 	public enum UpgradeEnum
 	{
 		None,
@@ -126,7 +128,7 @@ public class PlayerScript : MonoBehaviour
 
 	private IEnumerator DisableDash()
 	{
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(DashDeadlyTime);
 
 		dashEnabled = false;
 	}
