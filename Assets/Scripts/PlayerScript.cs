@@ -13,6 +13,8 @@ public class PlayerScript : MonoBehaviour
 	public float dashStrength = 10f;
 	public float climbForce = 10f;
 
+	public Vector3 ShellAttachVector = new Vector3(0.25f, 0.16f,-0.2f);
+
 	public enum UpgradeEnum
 	{
 		None,
@@ -58,10 +60,12 @@ public class PlayerScript : MonoBehaviour
 			if (_shellBoy != null)
 			{
 				//shellBoy.transform.SetParent(null);
+#warning Bug, detached the crab mesh
 				this.transform.DetachChildren();
 				//shellBoy.transform.position += new Vector3(0, 4, 0);
 				_shellBoy.DontCollide = true;
 				_shellBoy.gameObject.AddComponent<Rigidbody>();
+				_shellBoy.gameObject.GetComponent<BoxCollider>().enabled = true;
 				_shellBoy = null;
 
 				ClearUpgrades();
@@ -151,8 +155,10 @@ public class PlayerScript : MonoBehaviour
 			}
 
 			Destroy(shell.GetComponent<Rigidbody>());
+			shell.gameObject.GetComponent<BoxCollider>().enabled = false;
 			shell.transform.SetParent(this.transform);
-			shell.transform.localPosition = new Vector3(0, 0.5f, -0.5f);
+			shell.transform.localPosition = ShellAttachVector;
+			shell.transform.localRotation = new Quaternion(0f,0f,0f,0f);
 		}
 
 		string cName = collision.gameObject.name;
@@ -198,7 +204,7 @@ public class PlayerScript : MonoBehaviour
 
 			if (_shellBoy != null && slot > -1)
 			{
-				_shellBoy.SetUpgrade(slot, UpgradeEnum.Dash);
+				_shellBoy.SetUpgrade(slot, UpgradeEnum.Jump);
 			}
 		}
 		else if(collision.gameObject.tag == climbTag)
@@ -207,7 +213,7 @@ public class PlayerScript : MonoBehaviour
 
 			if (_shellBoy != null && slot > -1)
 			{
-				_shellBoy.SetUpgrade(slot, UpgradeEnum.Dash);
+				_shellBoy.SetUpgrade(slot, UpgradeEnum.Climb);
 			}
 		}
 	}
@@ -236,7 +242,7 @@ public class PlayerScript : MonoBehaviour
 	public void SetActiveUpgrade(int slot)
 	{
 		_activeUpgrade = slot;
-		if (_upgradeLimit >= _activeUpgrade)
+		if (_activeUpgrade >= _upgradeLimit)
 			_activeUpgrade = _upgradeLimit;
 
 		uiController.SetActive(slot);
