@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour
 
 	public Vector3 ShellAttachVector = new Vector3(0.25f, 0.16f,-0.2f);
 
+	public bool DestroyUpgrades = true;
+
 	public enum UpgradeEnum
 	{
 		None,
@@ -45,9 +47,9 @@ public class PlayerScript : MonoBehaviour
 		 * Test
 		 */
 		 
-		_upgradeLimit = 1;
+		//_upgradeLimit = 1;
 		//_upgrades[0] = UpgradeEnum.Dash;
-		uiController.SetMaxUpgrades(1);
+		uiController.SetMaxUpgrades(0);
     }
 
 	bool climbEnabled = false;
@@ -124,7 +126,7 @@ public class PlayerScript : MonoBehaviour
 
 	private IEnumerator DisableDash()
 	{
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(1);
 
 		dashEnabled = false;
 	}
@@ -196,6 +198,8 @@ public class PlayerScript : MonoBehaviour
 			if(_shellBoy != null && slot > -1)
 			{
 				_shellBoy.SetUpgrade(slot, UpgradeEnum.Dash);
+
+				SetActiveUpgrade(slot + 1);
 			}
 		}
 		else if(collision.gameObject.tag == jumpTag)
@@ -205,6 +209,8 @@ public class PlayerScript : MonoBehaviour
 			if (_shellBoy != null && slot > -1)
 			{
 				_shellBoy.SetUpgrade(slot, UpgradeEnum.Jump);
+
+				SetActiveUpgrade(slot + 1);
 			}
 		}
 		else if(collision.gameObject.tag == climbTag)
@@ -214,13 +220,20 @@ public class PlayerScript : MonoBehaviour
 			if (_shellBoy != null && slot > -1)
 			{
 				_shellBoy.SetUpgrade(slot, UpgradeEnum.Climb);
+
+				SetActiveUpgrade(slot + 1);
 			}
 		}
 	}
 
 	private int UpgradeInternal(GameObject gameObject, UpgradeEnum upgrade)
 	{
-		gameObject.transform.Translate(0, 10, 0);
+		if(DestroyUpgrades)
+		{
+			Destroy(gameObject);
+		}
+		else
+			gameObject.transform.Translate(0, 10, 0);
 
 		return AddUpgrade(upgrade);
 	}
