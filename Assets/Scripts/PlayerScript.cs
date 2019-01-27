@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,6 +80,17 @@ public class PlayerScript : MonoBehaviour
 				uiController.SetMaxUpgrades(0);
 			}
 		}
+
+		//if(Input.anyKey)
+		//{
+		//	foreach(KeyCode code in Enum.GetValues(typeof(KeyCode)))
+		//	{
+		//		if(Input.GetKey(code))
+		//		{
+		//			Debug.Log(code.ToString());
+		//		}
+		//	}
+		//}
 
 		//Joy4 = LB
 
