@@ -21,7 +21,10 @@ public class MusicManager : MonoBehaviour
     public void PlayMusic()
     {
         if (source.isPlaying) return;
+        
+        source.loop = true;
         source.Play();
+        
     }
 
     public void StopMusic()
