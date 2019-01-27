@@ -49,7 +49,7 @@ public class PlayerScript : MonoBehaviour
 		 
 		//_upgradeLimit = 1;
 		//_upgrades[0] = UpgradeEnum.Dash;
-		//uiController.SetMaxUpgrades(1);
+		uiController.SetMaxUpgrades(0);
     }
 
 	bool climbEnabled = false;
