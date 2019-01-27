@@ -8,9 +8,9 @@ public class ShellScript : MonoBehaviour
 	public int MaxUpgrades = 1;
 	public bool DontCollide = false;
 
-	public Vector3 JumpAttachpoint;
-	public Vector3 DashAttachpoint;
-	public Vector3 ClimbAttachpoint;
+	public Vector3 JumpAttachpoint = new Vector3(0,0,0);
+	public Vector3 DashAttachpoint = new Vector3(0,0,-0.5f);
+	public Vector3 ClimbAttachpoint = new Vector3(-0.2f,0.1f,-0.9f);
 
 	public GameObject JumpPrefab;
 	public GameObject DashPrefab;

@@ -60,6 +60,7 @@ public class PlayerScript : MonoBehaviour
 			if (_shellBoy != null)
 			{
 				//shellBoy.transform.SetParent(null);
+#warning Bug, detached the crab mesh
 				this.transform.DetachChildren();
 				//shellBoy.transform.position += new Vector3(0, 4, 0);
 				_shellBoy.DontCollide = true;
@@ -157,6 +158,7 @@ public class PlayerScript : MonoBehaviour
 			shell.gameObject.GetComponent<BoxCollider>().enabled = false;
 			shell.transform.SetParent(this.transform);
 			shell.transform.localPosition = ShellAttachVector;
+			shell.transform.localRotation = new Quaternion(0f,0f,0f,0f);
 		}
 
 		string cName = collision.gameObject.name;
@@ -240,7 +242,7 @@ public class PlayerScript : MonoBehaviour
 	public void SetActiveUpgrade(int slot)
 	{
 		_activeUpgrade = slot;
-		if (_upgradeLimit >= _activeUpgrade)
+		if (_activeUpgrade >= _upgradeLimit)
 			_activeUpgrade = _upgradeLimit;
 
 		uiController.SetActive(slot);

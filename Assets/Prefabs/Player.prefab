@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 5800922941152162462}
   - component: {fileID: 1005816113}
   - component: {fileID: 1005816112}
-  - component: {fileID: 244370061230745112}
+  - component: {fileID: 2041938099}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -460,7 +460,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.53736174, z: 2.1357708}
   m_Center: {x: 0, y: 0.09524912, z: -0.2156825}
---- !u!114 &244370061230745112
+--- !u!114 &2041938099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -476,6 +476,7 @@ MonoBehaviour:
   jumpStrength: 5
   dashStrength: 10
   climbForce: 10
+  ShellAttachVector: {x: 0.25, y: 0.16, z: -0.2}
 --- !u!1 &5800922941193201873
 GameObject:
   m_ObjectHideFlags: 0
