@@ -9,13 +9,14 @@ public class Movement : MonoBehaviour
     private float speed = 5;
     //[SerializeField]
     public float rotationSpeed = 50;
-
+    public Animator animator;
 	public float selfRightingTorque = 1.0f;
+    private bool isWalking;
 
 	private void Start()
-	{
-
-	}
+    {
+        animator = GetComponentInChildren<Animator>();
+    } 
 
 	private void Update()
 	{
@@ -26,23 +27,33 @@ public class Movement : MonoBehaviour
     {
         float translation = Mathf.RoundToInt(Input.GetAxis("Vertical")) * speed;
         float rotation = Mathf.RoundToInt(Input.GetAxis("Horizontal")) * rotationSpeed;
+        if (translation > 0 || rotation > 0)
+        {
+            translation *= Time.deltaTime;
+            rotation *= Time.deltaTime;
 
-        translation *= Time.deltaTime;
-        rotation *= Time.deltaTime;
+            
+            animator.Play("Walk");
+            
+            transform.Translate(0, 0, translation);
 
-		//translation 
+            transform.Rotate(0, rotation, 0);
 
-        transform.Translate(0, 0, translation);
+            
+        }
+        else
+        {
+            
+                animator.Play("Idle");
+           
+        }
 
-        transform.Rotate(0, rotation, 0);
-
-		var angle = Vector3.Angle(transform.up, Vector3.up);
-
-		if(angle > 0.001)
-		{
-			var axis = Vector3.Cross(transform.up, Vector3.up);
-			this.GetComponent<Rigidbody>().AddTorque(axis * angle * selfRightingTorque);
-			Debug.Log(axis);
-		}
+     
+        var angle = Vector3.Angle(transform.up, Vector3.up);
+        if (angle > 0.001)
+        {
+            var axis = Vector3.Cross(transform.up, Vector3.up);
+            this.GetComponent<Rigidbody>().AddTorque(axis * angle * selfRightingTorque);
+        }
     }
 }
