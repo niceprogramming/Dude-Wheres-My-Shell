@@ -41,8 +41,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.6273585, g: 0.6553067, b: 1, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.5582948, g: 0.57415825, b: 0.7735849, a: 1}
+  m_Intensity: 1.5
   m_Range: 5
   m_SpotAngle: 34.25277
   m_CookieSize: 10
@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasObject: {fileID: 0}
-  jumpStrength: 5
+  jumpStrength: 4
   dashStrength: 10
   climbForce: 10
   ShellAttachVector: {x: 0.25, y: 0.16, z: -0.2}

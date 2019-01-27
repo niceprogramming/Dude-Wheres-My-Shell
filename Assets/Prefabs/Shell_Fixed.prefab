@@ -75,12 +75,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e22bdea7b227b4db32bac7e55f496e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxUpgrades: 3
+  MaxUpgrades: 1
   DontCollide: 0
   JumpAttachpoint: {x: 0, y: 0, z: 0}
   DashAttachpoint: {x: 0, y: 0, z: -0.5}
   ClimbAttachpoint: {x: -0.2, y: 0.1, z: -0.9}
-  JumpPrefab: {fileID: 0}
+  JumpPrefab: {fileID: 1550942867608995646, guid: a7d1f09bf88f3fd4db9a509f5bc4020f,
+    type: 3}
   DashPrefab: {fileID: 3711434576441421447, guid: 13e507bfa65b1044381d45ec21de1e76,
     type: 3}
   ClimbPrefab: {fileID: 705212096091637364, guid: eb2a2ba8fb4f6804f978a445676f9b79,
