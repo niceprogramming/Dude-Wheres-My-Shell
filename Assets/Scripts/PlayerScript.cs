@@ -19,6 +19,9 @@ public class PlayerScript : MonoBehaviour
 
 	public float DashDeadlyTime = 1f;
 
+	public int JumpCountMax = 1;
+	private int jumpCount = 0;
+
 	public enum UpgradeEnum
 	{
 		None,
@@ -96,7 +99,11 @@ public class PlayerScript : MonoBehaviour
 			}
 			else if (_upgrades[_activeUpgrade-1] == UpgradeEnum.Jump)
 			{
-				this.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+				if (jumpCount > 0)
+				{
+					this.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+					jumpCount--;
+				}
 			}
 		}
 
@@ -165,6 +172,8 @@ public class PlayerScript : MonoBehaviour
 			shell.transform.localRotation = new Quaternion(0f,0f,0f,0f);
 		}
 
+		jumpCount = JumpCountMax;
+
 		string cName = collision.gameObject.name;
 
 		bool allowedClimb = false;
@@ -230,9 +239,13 @@ public class PlayerScript : MonoBehaviour
 
 	private int UpgradeInternal(GameObject gameObject, UpgradeEnum upgrade)
 	{
-		if(DestroyUpgrades)
+		if(DestroyUpgrades && _shellBoy != null)
 		{
 			Destroy(gameObject);
+		}
+		else if(DestroyUpgrades && _shellBoy == null)
+		{
+			return -1;
 		}
 		else
 			gameObject.transform.Translate(0, 10, 0);
