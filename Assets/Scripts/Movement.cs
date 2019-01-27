@@ -42,6 +42,7 @@ public class Movement : MonoBehaviour
 		{
 			var axis = Vector3.Cross(transform.up, Vector3.up);
 			this.GetComponent<Rigidbody>().AddTorque(axis * angle * selfRightingTorque);
+			Debug.Log(axis);
 		}
     }
 }
