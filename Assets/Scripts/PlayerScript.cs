@@ -42,12 +42,13 @@ public class PlayerScript : MonoBehaviour
 		/*
 		 * Test
 		 */
-
+		 
 		_activeUpgrade = 1;
-		_upgrades[0] = UpgradeEnum.Climb;
+		_upgrades[0] = UpgradeEnum.Dash;
     }
 
 	bool climbEnabled = false;
+	bool dashEnabled = false;
     // Update is called once per frame
     void Update()
     {
@@ -77,6 +78,10 @@ public class PlayerScript : MonoBehaviour
 			else if (_upgrades[_activeUpgrade-1] == UpgradeEnum.Dash)
 			{
 				this.GetComponent<Rigidbody>().AddForce(transform.forward * dashStrength, ForceMode.Impulse);
+
+				dashEnabled = true;
+
+				StartCoroutine(DisableDash());
 			}
 			else if (_upgrades[_activeUpgrade-1] == UpgradeEnum.Jump)
 			{
@@ -87,7 +92,6 @@ public class PlayerScript : MonoBehaviour
 		if (climbEnabled)
 		{
 			this.GetComponent<Rigidbody>().AddForce(Vector3.up * climbForce, ForceMode.Force);
-
 		}
 
 		if (Input.GetKeyUp(KeyCode.Space))
@@ -111,8 +115,20 @@ public class PlayerScript : MonoBehaviour
 		}
 	}
 
+	private IEnumerator DisableDash()
+	{
+		yield return new WaitForSeconds(3);
+
+		dashEnabled = false;
+	}
+
 	Dictionary<string, int> collisionDic = new Dictionary<string, int>();
-	string allowedNameCsv = "climb,Climb";
+	string allowedClimbNameCsv = "climb,Climb";
+	string allowedBreakCsv = "break,Break";
+	string dashTag = "Dash";
+	string jumpTag = "Jump";
+	string climbTag = "Climb";
+
 	void OnCollisionEnter(Collision collision)
 	{
 		var shell = collision.gameObject.GetComponent<ShellScript>();
@@ -127,22 +143,51 @@ public class PlayerScript : MonoBehaviour
 			shell.transform.localPosition = new Vector3(0, 0.5f, -0.5f);
 		}
 
+		string cName = collision.gameObject.name;
+
 		bool allowedClimb = false;
 
-		string[] names = allowedNameCsv.Split(',');
-		foreach(var name in names)
+		string[] climbNames = allowedClimbNameCsv.Split(',');
+		foreach(var name in climbNames)
 		{
-			if (collision.gameObject.name.Contains(name))
+			if (cName.Contains(name))
 				allowedClimb = true;
 		}
 
 		if (allowedClimb)
 		{
-			if (!collisionDic.ContainsKey(collision.gameObject.name))
-				collisionDic.Add(collision.gameObject.name, 1);
+			if (!collisionDic.ContainsKey(cName))
+				collisionDic.Add(cName, 1);
 			else
-				collisionDic[collision.gameObject.name]++;
+				collisionDic[cName]++;
 		}
+
+		string[] breakNames = allowedBreakCsv.Split(',');
+		foreach(var name in breakNames)
+		{
+			if(dashEnabled && cName.Contains(name))
+			{
+				Destroy(collision.gameObject);
+			}
+		}
+
+		if(collision.gameObject.tag == dashTag)
+		{
+			
+		}
+		else if(collision.gameObject.tag == jumpTag)
+		{
+
+		}
+		else if(collision.gameObject.tag == climbTag)
+		{
+
+		}
+	}
+
+	private void UpgradeInternal(GameObject gameObject)
+	{
+		gameObject.transform.Translate(0, 10, 0);
 	}
 
 	private void OnCollisionExit(Collision collision)
